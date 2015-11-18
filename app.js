@@ -48,10 +48,12 @@ function calculateWotdAvailability(games) {
 				// If we find a game that meets the conditions, then wotd was gotten on this game (not factoring in IP boosts)
 				// So, we need to return false, since it's not up.
 				$('#status').val('no');
+				return;
 			}
 		} else {
 			// If we're outside of the 22 hour window, and we haven't found a game that looks like it is a wotd game, then return true.
 			$('#status').val('yes');
+			return;
 		}
 	}
 	
@@ -59,6 +61,7 @@ function calculateWotdAvailability(games) {
 	// Were within the time and met the conditions.
 	// Possible if user plays more than 10 games within 22 hours.
 	$('#status').val('maybe');
+	return;
 }
 
 function getRecentGames(summonerName, summonerID, region) {
