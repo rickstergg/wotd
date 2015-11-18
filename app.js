@@ -1,10 +1,5 @@
 $( document ).ready(function() {
-	// Pseudocode: 
-	//		If the last recent game played has been over 22 hours, doesn't matter what they've won or lost, wotd is up.
-	// 		If the games recently weren't over 150 IP in winnings, ignore.
-	//		
-	
-	// Countdown code
+	// Countdown code for warm up.
 	var today = new Date();
 	var target = new Date("November 26, 2015 10:55:00"); // WOO YEAH BABE
 	var seconds = (target.getTime() - today.getTime()) / 1000;
@@ -22,8 +17,48 @@ $( document ).ready(function() {
 	$("input[name='seconds']").val(seconds);
 });
 
+function withinTime(game, now) {
+	// Get the time right now, compare it with the time the game ended
+	// If it's less than 22 hours, then it's within time, and return true.
+	return (((now - game.createDate) / 3600000) <= 22);
+}
+
+function meetsConditions(game) {
+	// Win, >150IP, Matched game, >= smoke weed every day
+	return(game['stats']['win'] && game['ipEarned'] >= 150 && game['gameType'] == 'MATCHED_GAME' && game['timePlayed'] >= 420);
+}
+
 function calculateWotdAvailability(games) {
+	/* Pseudocode: 
+		Constants:
+			- 10 game list.
+			- Rules for win of the day.
+			- Win, 150 IP, > 7 minutes of a game, anything but custom game, every 22 hours.
+		Within last 22 hours, find the game they got win of the day. 
+		If criteria was met, return no. Otherwise, yes.	
+		Cannot find game they got win of the day, game 10 was within 22 hours, return maybe? Need moar games!!!
+		Cannot find game they got win of the day, game 10 outside 22 hours, return yes.
+	*/
+	var now = new Date().getTime();
+
+	for(int i = 0; i < games.length; i++) {
+		// While game time is less than 22 hours from now, check if it satisfies the wotd conditions.
+		if(withinTime(game[i])) {
+			if(meetsConditions(game)) {
+				// If we find a game that meets the conditions, then wotd was gotten on this game (not factoring in IP boosts)
+				// So, we need to return false, since it's not up.
+				$('#status').val('no');
+			}
+		} else {
+			// If we're outside of the 22 hour window, and we haven't found a game that looks like it is a wotd game, then return true.
+			$('#status').val('yes');
+		}
+	}
 	
+	// If we get here, we looped through all 10 games, and none of them:
+	// Were within the time and met the conditions.
+	// Possible if user plays more than 10 games within 22 hours.
+	$('#status').val('maybe');
 }
 
 function getRecentGames(summonerName, summonerID, region) {
@@ -36,7 +71,7 @@ function getRecentGames(summonerName, summonerID, region) {
 		success: function(data) {
 			console.log("Done");
 			console.log(data);
-			calculateWotdAvailability(data);
+			calculateWotdAvailability(data['games']);
 		}
 	});
 }
