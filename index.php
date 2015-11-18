@@ -30,7 +30,8 @@ Name: Rick Zhang
 	<option value="kr">Korea</option>
 </select>
 <button type="button" onClick="wotd();">IS MY WOTD UP??!?!?!?!</button>
-
+<br>
+<br>
 <input type="text" id="status"><br>
 
 <h2>WHEN I GET TO SEE MY BB</h2>
