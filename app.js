@@ -43,8 +43,8 @@ function calculateWotdAvailability(games) {
 
 	for(var i = 0; i < games.length; i++) {
 		// While game time is less than 22 hours from now, check if it satisfies the wotd conditions.
-		if(withinTime(game[i])) {
-			if(meetsConditions(game)) {
+		if(withinTime(games[i])) {
+			if(meetsConditions(games[i])) {
 				// If we find a game that meets the conditions, then wotd was gotten on this game (not factoring in IP boosts)
 				// So, we need to return false, since it's not up.
 				$('#status').val('no');
