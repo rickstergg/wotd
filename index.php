@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- 
-Name: Rick Z
+Name: Rick Zhang
 -->
 <html>
 
@@ -30,6 +30,8 @@ Name: Rick Z
 	<option value="kr">Korea</option>
 </select>
 <button type="button" onClick="wotd();">IS MY WOTD UP??!?!?!?!</button>
+
+<input type="text" id="status"><br>
 
 <h2>WHEN I GET TO SEE MY BB</h2>
 <div class="countdown">
