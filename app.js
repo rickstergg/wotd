@@ -41,7 +41,7 @@ function calculateWotdAvailability(games) {
 	*/
 	var now = new Date().getTime();
 
-	for(int i = 0; i < games.length; i++) {
+	for(var i = 0; i < games.length; i++) {
 		// While game time is less than 22 hours from now, check if it satisfies the wotd conditions.
 		if(withinTime(game[i])) {
 			if(meetsConditions(game)) {
