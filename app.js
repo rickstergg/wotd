@@ -25,7 +25,7 @@ function withinTime(game, now) {
 
 function meetsConditions(game) {
 	// Win, >150IP, Matched game, >= smoke weed every day
-	return(game['stats']['win'] && game['ipEarned'] >= 150 && game['gameType'] == 'MATCHED_GAME' && game['timePlayed'] >= 420);
+	return(game['stats']['win'] && game['ipEarned'] >= 150 && game['gameType'] == 'MATCHED_GAME' && game['stats']['timePlayed'] >= 420);
 }
 
 function calculateWotdAvailability(games) {
