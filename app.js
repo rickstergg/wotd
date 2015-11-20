@@ -90,7 +90,7 @@ function getSummonerID(summonerName, region) {
 		success: function(data){
 			console.log("Done");
 			console.log(data);
-			var id = data[summonerName].id;
+			var id = data[summonerName.replace(/\s+/g, '')].id; // the data that comes back has no spaces in the hash.
 			getRecentGames(summonerName, id, region);
 		}
 	});
