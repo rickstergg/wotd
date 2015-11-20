@@ -84,13 +84,15 @@ function getSummonerID(summonerName, region) {
 		type: "POST",
 		url:"wrapper.php",
 		dataType:'json',
-			data:	{	'url': "https://"+region+".api.pvp.net/api/lol/na/v1.4/summoner/by-name/"+summonerName+"?",
+			data:	{	'url': "https://"+region+".api.pvp.net/api/lol/na/v1.4/summoner/by-name/"+encodeURIComponent(summonerName)+"?",
 						'name': summonerName
 					},
 		success: function(data){
 			console.log("Done");
 			console.log(data);
-			var id = data[summonerName.replace(/\s+/g, '')].id; // the data that comes back has to be accessed at the summoner name with no spaces
+			// the data that comes back has to be accessed at the summoner name with no spaces
+			var hashSummonerName = summonerName.replace(/\s+/g, '');
+			var id = data[hashSummonerName].id;
 			getRecentGames(summonerName, id, region);
 		}
 	});
@@ -102,9 +104,8 @@ function processName(name) {
 
 function wotd() {
 	var summonerName = $('#summonerName').val();
-	var name = processName(summonerName);
 	var region = $('#region option:selected').val();
 	console.log("Retrieving summoner ID");
-	getSummonerID(name, region);
+	getSummonerID(summonerName, region);
     return true;
 }
