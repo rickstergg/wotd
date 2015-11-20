@@ -90,7 +90,7 @@ function getSummonerID(summonerName, region) {
 		success: function(data){
 			console.log("Done");
 			console.log(data);
-			var id = data[summonerName.replace(/\s+/g, '')].id; // the data that comes back has no spaces in the hash.
+			var id = data[summonerName.replace(/\s+/g, '')].id; // the data that comes back has to be accessed at the summoner name with no spaces
 			getRecentGames(summonerName, id, region);
 		}
 	});
@@ -102,9 +102,9 @@ function processName(name) {
 
 function wotd() {
 	var summonerName = $('#summonerName').val();
-	summonerName = processName(summonerName);
+	var name = processName(summonerName);
 	var region = $('#region option:selected').val();
 	console.log("Retrieving summoner ID");
-	getSummonerID(summonerName, region);
+	getSummonerID(name, region);
     return true;
 }
