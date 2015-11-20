@@ -96,9 +96,13 @@ function getSummonerID(summonerName, region) {
 	});
 }
 
+function processUserName(name) {
+	return encodeURIComponent(name.toLowerCase());
+}
+
 function wotd() {
 	var summonerName = $('#summonerName').val();
-	summonerName = summonerName.toLowerCase();
+	summonerName = processUsername(summonerName);
 	var region = $('#region option:selected').val();
 	console.log("Retrieving summoner ID");
 	getSummonerID(summonerName, region);
