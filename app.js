@@ -84,14 +84,14 @@ function getSummonerID(summonerName, region) {
 		type: "POST",
 		url:"wrapper.php",
 		dataType:'json',
-			data:	{	'url': "https://"+region+".api.pvp.net/api/lol/na/v1.4/summoner/by-name/"+encodeURIComponent(summonerName)+"?",
-						'name': summonerName
+			data:	{
+						'url': "https://"+region+".api.pvp.net/api/lol/na/v1.4/summoner/by-name/"+encodeURIComponent(summonerName)+"?"
 					},
 		success: function(data){
 			console.log("Done");
 			console.log(data);
 			// the data that comes back has to be accessed at the summoner name with no spaces
-			var hashSummonerName = summonerName.replace(/\s+/g, '');
+			var hashSummonerName = summonerName.toLowerCase().replace(/\s+/g, '');
 			var id = data[hashSummonerName].id;
 			getRecentGames(summonerName, id, region);
 		}
