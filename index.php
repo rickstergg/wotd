@@ -16,7 +16,7 @@ Name: Rick Zhang
 </head>
 
 <body>
-  <div class="selection center">
+  <div class="selection vertical-center horizontal-center">
     <select class="input-large" id="region" name="region">
       <option value="na" selected="selected">NA</option>
       <option value="eune">EU Nordic &amp; East</option>
@@ -33,7 +33,7 @@ Name: Rick Zhang
     <button type="button" onClick="wotd();">LEMME KNOW</button>
   </div>
 
-  <div id="result" class="center">
+  <div id="result" class="vertical-center horizontal-center">
     <input type="text" id="status">
   </div>
 </body>
