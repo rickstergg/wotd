@@ -1,5 +1,6 @@
 $( document ).ready(function() {
   // Countdown code for warm up.
+  /*
   var today = new Date();
   var target = new Date("November 26, 2015 10:55:00"); // WOO YEAH BABE
   var seconds = (target.getTime() - today.getTime()) / 1000;
@@ -15,6 +16,7 @@ $( document ).ready(function() {
   $("input[name='hours']").val(hours);
   $("input[name='minutes']").val(minutes);
   $("input[name='seconds']").val(seconds);
+  */
 });
 
 function withinTime(game, now) {

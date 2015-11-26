@@ -1,0 +1,14 @@
+body {
+  background-color: #000;
+}
+
+.center {
+  margin: auto;
+  width: 90%;
+}
+
+.selection {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
