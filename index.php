@@ -16,9 +16,9 @@ Name: Rick Zhang
 </head>
 
 <body>
-  <div id="selection" class="center">
+  <div class="selection center">
     <select class="input-large" id="region" name="region">
-      <option value="na" selected="selected">North America</option>
+      <option value="na" selected="selected">NA</option>
       <option value="eune">EU Nordic &amp; East</option>
       <option value="euw">EU West</option>
       <option value="br">Brazil</option>
