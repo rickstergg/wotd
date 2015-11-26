@@ -16,25 +16,27 @@ Name: Rick Zhang
 </head>
 
 <body>
-  <div class="selection horizontal-center">
-    <select class="input-large" id="region" name="region">
-      <option value="na" selected="selected">NA</option>
-      <option value="eune">EU Nordic &amp; East</option>
-      <option value="euw">EU West</option>
-      <option value="br">Brazil</option>
-      <option value="lan">Latin America North</option>
-      <option value="las">Latin America South</option>
-      <option value="oce">Oceania</option>
-      <option value="ru">Russia</option>
-      <option value="tr">Turkey</option>
-      <option value="kr">Korea</option>
-    </select>
-    <input type="text" id="summonerName" name="summonerName">
-    <button type="button" onClick="wotd();">LEMME KNOW</button>
-  </div>
+  <div class="container">
+    <div class="selection">
+      <select class="input-large" id="region" name="region">
+        <option value="na" selected="selected">NA</option>
+        <option value="eune">EU Nordic &amp; East</option>
+        <option value="euw">EU West</option>
+        <option value="br">Brazil</option>
+        <option value="lan">Latin America North</option>
+        <option value="las">Latin America South</option>
+        <option value="oce">Oceania</option>
+        <option value="ru">Russia</option>
+        <option value="tr">Turkey</option>
+        <option value="kr">Korea</option>
+      </select>
+      <input type="text" id="summonerName" name="summonerName">
+      <button type="button" onClick="wotd();">LEMME KNOW</button>
+    </div>
 
-  <div class="result horizontal-center">
-    <input type="text" id="status">
+    <div class="result">
+      <input type="text" id="status">
+    </div>
   </div>
 </body>
 

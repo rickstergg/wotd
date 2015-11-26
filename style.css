@@ -1,28 +1,15 @@
 html, body {
-  background-color: #000;
+  background-color: #000000;
   height: 100%;
   margin: 0;
   position: relative;
 }
 
-.horizontal-center {
+.container {
+  background-color: #0080FF;
   margin: auto;
 }
 
-.vertical-center {
-  left: 50%;
-  margin: -15% -25%;
-  position: absolute;
-  top: 50%;
-}
-
-.selection {
-  height: 10%;
-  padding-bottom: 30px;
-  width: 100%;
-}
-
-.result {
-  height: 10%;
-  width: 100%;
+.horizontal-center {
+  margin: auto;
 }
