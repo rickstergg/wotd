@@ -17,7 +17,11 @@ Name: Rick Zhang
 
 <body>
   <div class="container">
-    <div class="selection horizontal-center">
+    <div class="username-selection">
+      <input class="rounded" type="text" id="summonerName" name="summonerName">
+    </div>
+
+    <div class="region-selection">
       <select class="input-large" id="region" name="region">
         <option value="na" selected="selected">NA</option>
         <option value="eune">EU Nordic &amp; East</option>
@@ -30,11 +34,13 @@ Name: Rick Zhang
         <option value="tr">Turkey</option>
         <option value="kr">Korea</option>
       </select>
-      <input type="text" id="summonerName" name="summonerName">
+    </div>
+
+    <div>
       <button type="button" onClick="wotd();">LEMME KNOW</button>
     </div>
 
-    <div class="result horizontal-center">
+    <div class="result">
       <input type="text" id="status">
     </div>
   </div>
