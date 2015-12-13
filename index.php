@@ -28,18 +28,18 @@ Name: Rick Zhang
     </div>
 
     <div class="region-selection">
-      <select class="input-large" id="region" name="region">
-        <option value="na" selected="selected">NA</option>
-        <option value="eune">EU Nordic &amp; East</option>
-        <option value="euw">EU West</option>
-        <option value="br">Brazil</option>
-        <option value="lan">Latin America North</option>
-        <option value="las">Latin America South</option>
-        <option value="oce">Oceania</option>
-        <option value="ru">Russia</option>
-        <option value="tr">Turkey</option>
-        <option value="kr">Korea</option>
-      </select>
+      <ul class="input-large" id="region" name="region">
+        <li value="na" selected="selected">NA</li>
+        <li value="eune">EU Nordic &amp; East</li>
+        <li value="euw">EU West</li>
+        <li value="br">Brazil</li>
+        <li value="lan">Latin America North</li>
+        <li value="las">Latin America South</li>
+        <li value="oce">Oceania</li>
+        <li value="ru">Russia</li>
+        <li value="tr">Turkey</li>
+        <li value="kr">Korea</li>
+      </ul>
     </div>
 
     <div class="result">
