@@ -13,7 +13,7 @@ Name: Rick Zhang
   <script src="js/app.js"></script>
   <script src="js/jquery-ui.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
-  <title>OMG I DID IT</title>
+  <title>Maru's Project</title>
   <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 </head>
 
