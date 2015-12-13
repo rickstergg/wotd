@@ -49,8 +49,6 @@ $( document ).ready(function() {
   if(region != null && validRegion(region)) {
     $('ul.region-selection li').removeClass('selected');
 	$('li[value='+region+']').addClass('selected');
-  } else {
-	error('You need a valid region! Choose any of: ' + 'na' + ' eune' + ' euw' + ' br' + ' lan' + ' las' + ' oce' + ' ru' + ' tu' + ' kr');
   }
   
   // If they have a summoner name in mind
@@ -185,9 +183,13 @@ function wotd() {
   updateQueryStringParameter(window.location.href, 'r', region);
   window.history.pushState("", "", '/?u='+summonerName+'&region='+region);
   if (validName(summonerName)) {
-	console.log("Retrieving summoner ID");
-	$('.loading').show();
-    getSummonerID(summonerName, region);
+	if (validRegion(region)) {
+		console.log("Retrieving summoner ID");
+		$('.loading').show();
+		getSummonerID(summonerName, region);	
+	} else {
+		error('You need a valid region! Choose any of: ' + 'na' + ' eune' + ' euw' + ' br' + ' lan' + ' las' + ' oce' + ' ru' + ' tu' + ' kr');
+	}
   } else {
 	error("The summoner name you entered is not valid! (character length, letters, numbers, and spaces only.)");
   }
