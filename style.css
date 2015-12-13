@@ -1,0 +1,52 @@
+html, body {
+  background-color: #000;
+  height: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.container {
+  height: 100%;
+  margin-left: 15%;
+  margin-right: 15%;
+  text-align: center;
+}
+
+.horizontal-center {
+  margin: auto;
+}
+
+.rounded {
+  border-radius: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.username-selection {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.region-selection {
+  padding-bottom: 30px;
+}
+
+.results {
+  padding-bottom: 30px;
+}
+
+h1 {
+  color: #FFFFFF;
+}
+
+.gray {
+  color: #D3D3D3;
+}
+
+#message {
+  color: #FF0000;
+}
