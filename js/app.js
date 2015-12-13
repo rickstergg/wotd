@@ -50,7 +50,7 @@ $( document ).ready(function() {
     $('ul.region-selection li').removeClass('selected');
 	$('li[value='+region+']').addClass('selected');
   } else {
-	error("You need a valid region! Choose any of: " + 'na' + ' eune' + ' euw' + ' br' + ' lan' + ' las' + ' oce' + ' ru' + ' tu' + ' kr'].toString());
+	error('You need a valid region! Choose any of: ' + 'na' + ' eune' + ' euw' + ' br' + ' lan' + ' las' + ' oce' + ' ru' + ' tu' + ' kr');
   }
   
   // If they have a summoner name in mind
