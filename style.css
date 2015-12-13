@@ -52,6 +52,7 @@ h1 {
 }
 
 ul.region-selection {
+	height: 45px;
     border:1px solid #ccc;
     border-width:1px 0;
     list-style:none;
