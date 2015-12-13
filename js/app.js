@@ -50,7 +50,7 @@ $( document ).ready(function() {
     $('ul.region-selection li').removeClass('selected');
 	$('li[value='+region+']').addClass('selected');
   }
-  $(this).attr('value')
+  window.history.pushState("", "", updateQueryStringParameter(window.location.href, 'r', $('.selected').attr('value')));
   
   // If they have a summoner name in mind
   var summonerName = getURLParameter('u');
