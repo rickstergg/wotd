@@ -52,9 +52,7 @@ h1 {
 }
 
 ul.region-selection {
-	height: 45px;
     border:1px solid #ccc;
-    border-width:1px 0;
     list-style:none;
     margin:0;
     padding:0;
@@ -62,9 +60,14 @@ ul.region-selection {
 }
 
 li {
-	display:inline;
+	display: inline;
 	padding: 14px 16px;
 	color: white;
+}
+
+li a {
+	display: inline-block;
+	padding: 10px;
 }
 
 li:hover {
