@@ -45,7 +45,7 @@ $( document ).ready(function() {
   $('.yes, .no, .maybe, .loading, .error').hide();
   
   // If they have a region in mind
-  var region = getURLParamter('r');
+  var region = getURLParameter('r');
   if(region != null && validRegion(region)) {
     $('ul.region-selection li').removeClass('selected');
 	$('li[value='+region+']').addClass('selected');
