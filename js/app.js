@@ -50,7 +50,7 @@ $( document ).ready(function() {
     $('ul.region-selection li').removeClass('selected');
 	$('li[value='+region+']').addClass('selected');
   }
-  window.history.pushState("", "", updateQueryStringParameter(window.location.href, 'r', $('.selected').attr('value')));
+  window.history.pushState('', '', updateQueryStringParameter(window.location.href, 'r', $('.selected').attr('value')));
   
   // If they have a summoner name in mind
   var summonerName = getURLParameter('u');
@@ -63,7 +63,7 @@ $( document ).ready(function() {
   $('ul.region-selection li').click(function(e) { 
     $('.selected').removeClass('selected');
 	$(this).addClass('selected');
-	window.history.pushState("", "", updateQueryStringParameter(window.location.href, 'r', $(this).attr('value')));
+	window.history.pushState('', '', updateQueryStringParameter(window.location.href, 'r', $(this).attr('value')));
   });
 });
 
@@ -98,7 +98,7 @@ function calculateWotdAvailability(games) {
         // If we find a game that meets the conditions, then wotd was gotten on this game (not factoring in IP boosts)
         // So, we need to return false, since it's not up.
 		$('.loading').hide();
-        $('.no').slideDown( "slow", function() {
+        $('.no').slideDown( 'slow', function() {
 			// Animation complete.
 		});
         return;
@@ -106,7 +106,7 @@ function calculateWotdAvailability(games) {
     } else {
       // If we're outside of the 22 hour window, and we haven't found a game that looks like it is a wotd game, then return true.
       $('.loading').hide();
-	  $('.yes').slideDown( "slow", function() {
+	  $('.yes').slideDown( 'slow', function() {
 		// Animation complete.
 	  });
       return;
@@ -118,23 +118,26 @@ function calculateWotdAvailability(games) {
   // Possible if user plays more than 10 games within 22 hours.
   $('.loading').hide();
   $('.maybe').slideDown( "slow", function() {
-    // Animation complete.
+    error('You have played more than 10 games in the last 22 hours! I can not see past that, so I can only say maybe! =(');
   });
   return;
 }
 
 function getRecentGames(summonerName, summonerID, region) {
-  console.log("Getting Recent Games.. with summonerID:"+summonerID);
+  console.log('Getting Recent Games.. with summonerID:'+summonerID);
   $.ajax({
     type: "POST",
     url: "wrapper.php",
     dataType: 'json',
-      data:   { 'url': "https://"+region+".api.pvp.net/api/lol/"+region+"/v1.3/game/by-summoner/"+summonerID+"/recent?" },
+      data:   { 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.3/game/by-summoner/'+summonerID+'/recent?' },
     success: function(data) {
-      console.log("Done");
+      console.log('Done');
       console.log(data);
       calculateWotdAvailability(data['games']);
-    }
+    },
+	error: function(error){
+	  console.log(error);
+	}
   });
 }
 
@@ -153,12 +156,11 @@ function getSummonerID(summonerName, region) {
       var hashSummonerName = summonerName.toLowerCase().replace(/\s+/g, '');
       var id = data[hashSummonerName].id;
       getRecentGames(summonerName, id, region);
-    }
+    },
+	error: function(error){
+	  console.log(error);
+	}
   });
-}
-
-function processName(name) {
-  return encodeURIComponent(name.toLowerCase());
 }
 
 function reset() {
@@ -180,18 +182,18 @@ function error(message) {
 function wotd() {
   reset();
   var summonerName = $('#summonerName').val();
-  var region = $(".selected").attr('value');
-  window.history.pushState("", "", updateQueryStringParameter(window.location.href, 'u', summonerName)); 
-  window.history.pushState("", "", updateQueryStringParameter(window.location.href, 'r', region));
+  var region = $('.selected').attr('value');
+  window.history.pushState('', '', updateQueryStringParameter(window.location.href, 'u', summonerName)); 
+  window.history.pushState('', '', updateQueryStringParameter(window.location.href, 'r', region));
   if (validName(summonerName)) {
 	if (validRegion(region)) {
-		console.log("Retrieving summoner ID");
+		console.log('Retrieving summoner ID');
 		$('.loading').show();
 		getSummonerID(summonerName, region);	
 	} else {
 		error('You need a valid region! Choose any of: ' + 'na' + ' eune' + ' euw' + ' br' + ' lan' + ' las' + ' oce' + ' ru' + ' tu' + ' kr');
 	}
   } else {
-	error("The summoner name you entered is not valid! (character length, letters, numbers, and spaces only.)");
+	error('The summoner name you entered is not valid! (character length, letters, numbers, and spaces only.)');
   }
 }
