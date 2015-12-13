@@ -29,7 +29,7 @@ Name: Rick Zhang
 
     <ul class="region-selection">
 		<li class="selected" value="na"><a>NA</a></li>
-		<li value="eune"><a>EU.E</a></li>
+		<li value="eune"><a>EU.NE</a></li>
 		<li value="euw"><a>EU.W</a></li>
 		<li value="br"><a>BR</a></li>
 		<li value="lan"><a>LAN</a></li>
