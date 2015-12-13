@@ -11,7 +11,7 @@ function updateQueryStringParameter(uri, key, value) {
 }
 
 function validName(name) {
-	return name.length >= 2 && name.length <= 16 && /[a-zA-Z0-9 ]+/.test(name);
+	return name.length >= 2 && name.length <= 16 && name.match(/^[a-z0-9]+$/i) == null;
 }
 
 function validRegion(region) {
