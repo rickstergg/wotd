@@ -45,6 +45,11 @@ $( document ).ready(function() {
     $('#summonerName').val(summonerName);
 	wotd();
   }
+  
+  $('ul.region-selection li').click(function(e) { 
+    $('.selected').removeClass('selected');
+	$(this).addClass('selected');
+  });
 });
 
 function withinTime(game, now) {
@@ -160,7 +165,7 @@ function error(message) {
 function wotd() {
   reset();
   var summonerName = $('#summonerName').val();
-  var region = $('#region option:selected').val();
+  var region = $(".selected").attr('value');
   updateQueryStringParameter(window.location.href, 'u', summonerName);
   window.history.pushState("", "", '/?u='+summonerName);
   if (valid(summonerName)) {
