@@ -144,7 +144,7 @@ function getSummonerID(summonerName, region) {
     url:"wrapper.php",
     dataType:'json',
       data: {
-            'url': "https://"+region+".api.pvp.net/api/lol/na/v1.4/summoner/by-name/"+encodeURIComponent(summonerName)+"?"
+            'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+encodeURIComponent(summonerName)+'?'
           },
     success: function(data){
       console.log("Done");
