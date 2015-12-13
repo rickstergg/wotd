@@ -123,6 +123,10 @@ function calculateWotdAvailability(games) {
   return;
 }
 
+function handleError(jqXHR, textStatus, errThrown) {
+	// Boom
+}
+
 function getRecentGames(summonerName, summonerID, region) {
   console.log('Getting Recent Games.. with summonerID:'+summonerID);
   $.ajax({
@@ -135,9 +139,7 @@ function getRecentGames(summonerName, summonerID, region) {
       console.log(data);
       calculateWotdAvailability(data['games']);
     },
-	error: function(error){
-	  console.log(error);
-	}
+	error: handleError
   });
 }
 
@@ -157,9 +159,7 @@ function getSummonerID(summonerName, region) {
       var id = data[hashSummonerName].id;
       getRecentGames(summonerName, id, region);
     },
-	error: function(error){
-	  console.log(error);
-	}
+	error: handleError
   });
 }
 
