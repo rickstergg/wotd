@@ -27,20 +27,18 @@ Name: Rick Zhang
       <input class="rounded" type="text" maxlength="16" id="summonerName" name="summonerName" onkeypress="submitOnEnter(event)" autofocus>
     </div>
 
-    <div class="region-selection">
-      <ul class="input-large" id="region" name="region">
-        <li value="na">NA</li>
-        <li value="eune">EU.E</li>
-        <li value="euw">EU.W</li>
-        <li value="br">BR</li>
-        <li value="lan">LAN</li>
-        <li value="las">LAS</li>
-        <li value="oce">OCE</li>
-        <li value="ru">RUS</li>
-        <li value="tr">TUR</li>
-        <li value="kr">KR</li>
-      </ul>
-    </div>
+    <ul class="region-selection">
+		<li value="na">NA</li>
+		<li value="eune">EU.E</li>
+		<li value="euw">EU.W</li>
+		<li value="br">BR</li>
+		<li value="lan">LAN</li>
+		<li value="las">LAS</li>
+		<li value="oce">OCE</li>
+		<li value="ru">RUS</li>
+		<li value="tr">TUR</li>
+		<li value="kr">KR</li>
+    </ul>
 
     <div class="result">
 		<div class="yes">
