@@ -10,10 +10,13 @@ function updateQueryStringParameter(uri, key, value) {
   }
 }
 
-function valid(name) {
+function validName(name) {
 	return name.length >= 2 && name.length <= 16 && /[a-zA-Z0-9 ]+/.test(name);
 }
 
+function validRegion(region) {
+	return (['na', 'eune', 'euw', 'br', 'lan', 'las', 'oce', 'ru', 'tu', 'kr'].indexOf(region) > -1);
+}
 // http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513
 function getURLParameter(name) {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
@@ -40,12 +43,24 @@ $( document ).ready(function() {
   */
   
   $('.yes, .no, .maybe, .loading, .error').hide();
+  
+  // If they have a region in mind
+  var region = getURLParamter('r');
+  if(region != null && validRegion(region)) {
+    $('ul.region-selection li').removeClass('selected');
+	$('li[value='+region+']').addClass('selected');
+  } else {
+	error("You need a valid region! Choose any of: " + 'na' + ' eune' + ' euw' + ' br' + ' lan' + ' las' + ' oce' + ' ru' + ' tu' + ' kr'].toString());
+  }
+  
+  // If they have a summoner name in mind
   var summonerName = getURLParameter('u');
   if(summonerName != null) {
     $('#summonerName').val(summonerName);
 	wotd();
   }
   
+  // Region click handler
   $('ul.region-selection li').click(function(e) { 
     $('.selected').removeClass('selected');
 	$(this).addClass('selected');
@@ -167,13 +182,13 @@ function wotd() {
   var summonerName = $('#summonerName').val();
   var region = $(".selected").attr('value');
   updateQueryStringParameter(window.location.href, 'u', summonerName);
-  window.history.pushState("", "", '/?u='+summonerName);
-  if (valid(summonerName)) {
+  updateQueryStringParameter(window.location.href, 'r', region);
+  window.history.pushState("", "", '/?u='+summonerName+'&region='+region);
+  if (validName(summonerName)) {
 	console.log("Retrieving summoner ID");
 	$('.loading').show();
     getSummonerID(summonerName, region);
   } else {
 	error("The summoner name you entered is not valid! (character length, letters, numbers, and spaces only.)");
   }
-  return true;
 }
