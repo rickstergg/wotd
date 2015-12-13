@@ -32,7 +32,7 @@ Name: Rick Zhang
         <li value="na">NA</li>
         <li value="eune">EU.E</li>
         <li value="euw">EU.W</li>
-        <li value="br">RB</li>
+        <li value="br">BR</li>
         <li value="lan">LAN</li>
         <li value="las">LAS</li>
         <li value="oce">OCE</li>
