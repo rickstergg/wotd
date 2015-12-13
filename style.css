@@ -54,7 +54,7 @@ h1 {
 ul.region-selection {
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 0px 0px 20px 0px;
     text-align: center;
 }
 
@@ -72,4 +72,8 @@ li a {
 li:hover {
 	cursor: pointer;
     background-color: #006400;
+}
+
+.selected {
+	background-color: #006400;
 }

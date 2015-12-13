@@ -28,7 +28,7 @@ Name: Rick Zhang
     </div>
 
     <ul class="region-selection">
-		<li value="na"><a>NA</a></li>
+		<li class="selected" value="na"><a>NA</a></li>
 		<li value="eune"><a>EU.E</a></li>
 		<li value="euw"><a>EU.W</a></li>
 		<li value="br"><a>BR</a></li>
