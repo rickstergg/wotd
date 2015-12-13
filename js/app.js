@@ -62,6 +62,8 @@ $( document ).ready(function() {
   $('ul.region-selection li').click(function(e) { 
     $('.selected').removeClass('selected');
 	$(this).addClass('selected');
+	updateQueryStringParameter(window.location.href, 'r', region);
+	
   });
 });
 
