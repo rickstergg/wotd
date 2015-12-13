@@ -50,6 +50,7 @@ $( document ).ready(function() {
     $('ul.region-selection li').removeClass('selected');
 	$('li[value='+region+']').addClass('selected');
   }
+  $(this).attr('value')
   
   // If they have a summoner name in mind
   var summonerName = getURLParameter('u');
@@ -62,8 +63,7 @@ $( document ).ready(function() {
   $('ul.region-selection li').click(function(e) { 
     $('.selected').removeClass('selected');
 	$(this).addClass('selected');
-	updateQueryStringParameter(window.location.href, 'r', region);
-	
+	window.history.pushState("", "", updateQueryStringParameter(window.location.href, 'r', $(this).attr('value')));
   });
 });
 
@@ -181,9 +181,8 @@ function wotd() {
   reset();
   var summonerName = $('#summonerName').val();
   var region = $(".selected").attr('value');
-  updateQueryStringParameter(window.location.href, 'u', summonerName);
-  updateQueryStringParameter(window.location.href, 'r', region);
-  window.history.pushState("", "", '/?u='+summonerName+'&region='+region);
+  window.history.pushState("", "", updateQueryStringParameter(window.location.href, 'u', summonerName)); 
+  window.history.pushState("", "", updateQueryStringParameter(window.location.href, 'r', region));
   if (validName(summonerName)) {
 	if (validRegion(region)) {
 		console.log("Retrieving summoner ID");
