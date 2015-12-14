@@ -158,7 +158,7 @@ function getSummonerID(summonerName, region) {
     success: function(data){
       console.log("Done");
       console.log(data);
-      the data that comes back has to be accessed at the summoner name with no spaces
+      // the data that comes back has to be accessed at the summoner name with no spaces
       var hashSummonerName = summonerName.toLowerCase().replace(/\s+/g, '');
       var id = data[hashSummonerName].id;
       getRecentGames(summonerName, id, region);
