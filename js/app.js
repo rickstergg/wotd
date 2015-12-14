@@ -151,7 +151,7 @@ function getSummonerID(summonerName, region) {
   $.ajax({
     type: "POST",
     url:"wrapper.php",
-    dataType:'json',
+    //dataType:'json',
       data: {
             'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+encodeURIComponent(summonerName)+'?'
           },
