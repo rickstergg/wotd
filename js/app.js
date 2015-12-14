@@ -125,7 +125,7 @@ function calculateWotdAvailability(games) {
 
 function handleError(jqXHR, textStatus, errThrown) {
 	// Boom
-	console.log(jqHXR);
+	console.log(jqXHR);
 	console.log(textStatus);
 	console.log(errThrown);
 }
