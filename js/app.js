@@ -132,65 +132,39 @@ function handleError(jqXHR, textStatus, errThrown) {
 
 function getRecentGames(summonerName, summonerID, region) {
   console.log('Getting Recent Games.. with summonerID: '+summonerID);
-  var isActiveX = !!window.ActiveXObject,
-  xhr = isActiveX ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
-  xhr.open('POST', 'wrapper.php', true);
-  xhr.send({ 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.3/game/by-summoner/'+summonerID+'/recent?' });
-  
-  xhr.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200){
-          var data = JSON.parse(this.responseText);
-          calculateWotdAvailability(data['games']);
-      }
-  };
-  
-  // $.ajax({
-    // type: "POST",
-    // url: "wrapper.php",
-    // dataType: 'json',
-      // data:   { 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.3/game/by-summoner/'+summonerID+'/recent?' },
-    // success: function(data) {
-      // console.log('Done');
-      // console.log(data);
-      // calculateWotdAvailability(data['games']);
-    // },
-	// error: handleError
-  // });
+  $.ajax({
+    type: "POST",
+    url: "wrapper.php",
+    dataType: 'json',
+      data:   { 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.3/game/by-summoner/'+summonerID+'/recent?' },
+    success: function(data) {
+      console.log('Done');
+      console.log(data);
+      calculateWotdAvailability(data['games']);
+    },
+	error: handleError
+  });
 }
 
 function getSummonerID(summonerName, region) {
   console.log('Retrieving summoner ID');
-  var isActiveX = !!window.ActiveXObject,
-  xhr = isActiveX ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
-  xhr.open('POST', 'wrapper.php', true);
-  xhr.send({ 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+encodeURIComponent(summonerName)+'?' });
-  
-  xhr.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200){
-          var data = JSON.parse(this.responseText);
-          var hashSummonerName = summonerName.toLowerCase().replace(/\s+/g, '');
-		  var id = data[hashSummonerName].id;
-		  getRecentGames(summonerName, id, region);
-      }
-  };
-
-  // $.ajax({
-    // type: "POST",
-    // url:"wrapper.php",
-    // dataType:'json',
-      // data: {
-            // 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+encodeURIComponent(summonerName)+'?'
-          // },
-    // success: function(data){
-      // console.log("Done");
-      // console.log(data);
-      // the data that comes back has to be accessed at the summoner name with no spaces
-      // var hashSummonerName = summonerName.toLowerCase().replace(/\s+/g, '');
-      // var id = data[hashSummonerName].id;
-      // getRecentGames(summonerName, id, region);
-    // },
-	// error: handleError
-  // });
+  $.ajax({
+    type: "POST",
+    url:"wrapper.php",
+    dataType:'json',
+      data: {
+            'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+encodeURIComponent(summonerName)+'?'
+          },
+    success: function(data){
+      console.log("Done");
+      console.log(data);
+      the data that comes back has to be accessed at the summoner name with no spaces
+      var hashSummonerName = summonerName.toLowerCase().replace(/\s+/g, '');
+      var id = data[hashSummonerName].id;
+      getRecentGames(summonerName, id, region);
+    },
+	error: handleError
+  });
 }
 
 function reset() {
