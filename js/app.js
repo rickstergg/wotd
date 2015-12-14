@@ -163,7 +163,7 @@ function getSummonerID(summonerName, region) {
   var isActiveX = !!window.ActiveXObject,
   xhr = isActiveX ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
   xhr.open('POST', 'wrapper.php', true);
-  xhr.send({ 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.3/game/by-summoner/'+summonerID+'/recent?' });
+  xhr.send({ 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+encodeURIComponent(summonerName)+'?' });
   
   xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200){
