@@ -24,5 +24,5 @@
   $url = $_POST['url'];
   $json = file_get_contents($url.'api_key=325f0342-8487-463f-be24-96ed6fb11bf1');
   echo $json;
-  print_r(parseHeaders($http_response_header));
+  echo var_dump($http_response_header);
 ?>
