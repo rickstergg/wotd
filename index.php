@@ -59,6 +59,14 @@ Name: Rick Zhang
 			</div>
 		</div>
     </div>
+	
+	<div class="improvements">
+		<p>Timer for when wotd is actually up, if it's not up.</p>
+		<p>Dealing with IP boosts</p>
+		<p>Better error handling, pure ajax calls instead of using jQuery</p>
+		<p>Anti spam / enter spam mechanisms</p>
+		<p>Implementation of api-key protection (as well as limit usage) mechanisms</p>
+	</div>
   </div>
 </body>
 
