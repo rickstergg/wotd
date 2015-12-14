@@ -1,7 +1,7 @@
 <?php
 
 	// http://php.net/manual/en/reserved.variables.httpresponseheader.php#117203
-	function parseHeaders( $headers )
+	function getResponseCodeFromHeaders( $headers )
 	{
 		$head = array();
 		foreach( $headers as $k=>$v )
@@ -13,16 +13,17 @@
 			{
 				$head[] = $v;
 				if( preg_match( "#HTTP/[0-9\.]+\s+([0-9]+)#",$v, $out ) )
-					http_response_code(intval($out[1]));
+					return intval($out[1]);
 			}
 		}
-		return $head;
+		return 200;
 	}
 
 
   header('Content-Type: application/json');
   $url = $_POST['url'];
   $json = file_get_contents($url.'api_key=325f0342-8487-463f-be24-96ed6fb11bf1');
-  parseHeaders($http_response_header);
-  echo $json;
+  $ary = json_decode($json, true);
+  $ary['response'] = getResponseCodeFromHeaders($http_response_header);
+  echo json_encode($json);
 ?>
