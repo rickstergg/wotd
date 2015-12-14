@@ -133,7 +133,7 @@ function handleError(jqXHR, textStatus, errThrown) {
 function getRecentGames(summonerName, summonerID, region) {
   console.log('Getting Recent Games.. with summonerID: '+summonerID);
   var isActiveX = !!window.ActiveXObject,
-  xhr = isActiveX ? new ActiveXObject("Microsoft.XMLHTTP"): new XMLHttpRequest();
+  xhr = isActiveX ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
   xhr.open('POST', 'wrapper.php', true);
   xhr.send({ 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.3/game/by-summoner/'+summonerID+'/recent?' });
   
@@ -159,12 +159,9 @@ function getRecentGames(summonerName, summonerID, region) {
 }
 
 function getSummonerID(summonerName, region) {
-
+  console.log('Retrieving summoner ID');
   var isActiveX = !!window.ActiveXObject,
-  xhr = isActiveX ? new ActiveXObject("Microsoft.XMLHTTP"): new XMLHttpRequest();
-  xhr.open('POST', 'wrapper.php', true);
-  xhr.send({   var isActiveX = !!window.ActiveXObject,
-  xhr = isActiveX ? new ActiveXObject("Microsoft.XMLHTTP"): new XMLHttpRequest();
+  xhr = isActiveX ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
   xhr.open('POST', 'wrapper.php', true);
   xhr.send({ 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.3/game/by-summoner/'+summonerID+'/recent?' });
   
@@ -220,7 +217,6 @@ function wotd() {
   window.history.pushState('', '', updateQueryStringParameter(window.location.href, 'r', region));
   if (validName(summonerName)) {
 	if (validRegion(region)) {
-		console.log('Retrieving summoner ID');
 		$('.loading').show();
 		getSummonerID(summonerName, region);	
 	} else {
