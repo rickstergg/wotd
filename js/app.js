@@ -124,10 +124,12 @@ function calculateWotdAvailability(games) {
 }
 
 function handleWrapperError() {
+	reset();
 	error("Rick must've done goofed somewhere in the PHP, hold on! ;3");
 }
 
 function handleError(statusCode, name, region) {
+	reset();
 	switch(statusCode) {
 		case 400:
 			error('Okay, so you may have found an edge case that messes up the request, or I dun goofed.');
