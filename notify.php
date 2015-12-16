@@ -1,28 +1,46 @@
 <?php
-#http://karavadra.net/php-mail-function-with-bluehost-working/
-#http://stackoverflow.com/questions/1055460/how-to-sanitze-user-input-in-php-before-mailing
+# http://stackoverflow.com/questions/14229656/mailgun-sent-mail-with-attachment
+$mg_api = 'key-c5cf541f65f71986d2f0976183c6344b';
+$mg_version = 'api.mailgun.net/v3/';
+$mg_domain = "rickzhang.cool";
+$mg_from_email = "admin@rickzhang.cool";
 
-$summonerName = filter_var($_POST['summonerName'], FILTER_SANITIZE_EMAIL);   
-$region = filter_var($_POST['region'], FILTER_SANITIZE_EMAIL);   
-$code = filter_var($_POST['status_code'], FILTER_SANITIZE_EMAIL);
+$mg_message_url = "https://".$mg_version.$mg_domain."/messages";
 
-$emailto = 'rickzhang@live.ca';
-$toname = 'Rick Zhang';
-$emailfrom = 'marupakuuu@rickzhan.cool';
-$fromname = 'Server';
-$subject = 'WOTD APP';
-$messagebody = 'Someone tried to search with username: ' . $summonerName . ' on ' . $region . ' and got ' . $code;
-$headers = 
-	'Return-Path: ' . $emailfrom . "\r\n" . 
-	'From: ' . $fromname . ' <' . $emailfrom . '>' . "\r\n" . 
-	'X-Priority: 3' . "\r\n" . 
-	'X-Mailer: PHP ' . phpversion() .  "\r\n" . 
-	'Reply-To: ' . $fromname . ' <' . $emailfrom . '>' . "\r\n" .
-	'MIME-Version: 1.0' . "\r\n" . 
-	'Content-Transfer-Encoding: 8bit' . "\r\n" . 
-	'Content-Type: text/plain; charset=UTF-8' . "\r\n";
-$params = '-f ' . $emailfrom;
-$test = mail($emailto, $subject, $messagebody, $headers, $params);
-# $test should be TRUE if the mail function is called correctly
-echo $test;
+$summonerName = filter_var($_POST['summonerName'], FILTER_SANITIZE_EMAIL);
+$region = filter_var($_POST['region'], FILTER_SANITIZE_EMAIL);
+$status_code = filter_var($_POST['status_code'], FILTER_SANITIZE_EMAIL);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+
+curl_setopt ($ch, CURLOPT_MAXREDIRS, 3);
+curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, false);
+curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt ($ch, CURLOPT_VERBOSE, 0);
+curl_setopt ($ch, CURLOPT_HEADER, 1);
+curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 10);
+curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);
+
+curl_setopt($ch, CURLOPT_USERPWD, 'api:' . $mg_api);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+curl_setopt($ch, CURLOPT_POST, true);
+//curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
+curl_setopt($ch, CURLOPT_HEADER, false);
+
+//curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_URL, $mg_message_url);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+        array(  'from'      => 'Rick <' . 'mailgun@rickzhang.cool' . '>',
+                'to'        => 'rickzhang@live.ca',
+                'h:Reply-To'=>  ' <' . $mg_reply_to_email . '>',
+                'subject'   => 'Error on WOTD APP',
+                'text'      => '',
+            ));
+$result = curl_exec($ch);
+curl_close($ch);
+$res = json_decode($result,TRUE);
+print_r($res);
 ?>
