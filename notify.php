@@ -24,4 +24,5 @@ $headers =
 $params = '-f ' . $emailfrom;
 $test = mail($emailto, $subject, $messagebody, $headers, $params);
 # $test should be TRUE if the mail function is called correctly
+echo $test;
 ?>
