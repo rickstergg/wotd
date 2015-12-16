@@ -20,8 +20,8 @@ curl_setopt($session, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 curl_setopt($session, CURLOPT_USERPWD, 'api:'.$api_key);
 curl_setopt($session, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($session, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, ‘POST’);
-curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
+curl_setopt($session, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($session, CURLOPT_POSTFIELDS, $params);
 
 // obtain response
 $response = curl_exec($session);
