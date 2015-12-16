@@ -143,7 +143,7 @@ function notify(summonerName, region, statusCode) {
     success: function(data) {
 		console.log("Successfully notified! CHECK YA MAIL!");
     },
-	error: function() {
+	error: function(xhr, ajaxOptions, thrownError) {
 		console.log("Failed to notify.. uh oh.");
 	}
   });
