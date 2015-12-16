@@ -7,8 +7,6 @@ $url = 'https://api.mailgun.net/v3/rickzhang.cool/messages';
 $api_key = 'api:key-c5cf541f65f71986d2f0976183c6344b';
 
 $params = array(
-    'api_user'  => 'api',
-    'api_key'   => $api_key,
 	'from'      => 'Rick <mailgun@rickzhang.cool>',
     'to'        => 'rickzhang@live.ca',
 	'to'		=> 'admin@rickzhang.cool',
@@ -18,6 +16,7 @@ $params = array(
 
 // Generate curl request
 $session = curl_init($url);
+curl_setopt($session, CURLOPT_USERPWD, 'api:'.$api_key);
 // Tell curl to use HTTP POST
 curl_setopt ($session, CURLOPT_POST, true);
 // Tell curl that this is the body of the POST
