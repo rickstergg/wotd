@@ -123,13 +123,34 @@ function calculateWotdAvailability(games) {
   return;
 }
 
-function handleWrapperError() {
-	reset();
+function handlePHPError() {
+	resetResults();
 	error("Rick must've done goofed somewhere in the PHP, hold on! ;3");
 }
 
-function handleError(statusCode, name, region) {
-	reset();
+function notify(summonerName, region, statusCode) {
+  console.log('Admin is being notified');
+  $.ajax({
+    type: "POST",
+    url: "notify.php",
+    dataType: 'json',
+    data:
+	{
+		'summonerName' : summonerName,
+		'region' : region,
+		'status_code' : statusCode
+	}
+    success: function(data) {
+		console.log("Successfully notified! CHECK YA MAIL!");
+    },
+	error: function() {
+		console.log("Failed to notify.. uh oh.");
+	}
+  });
+}
+
+function handleError(summonerName, region, statusCode) {
+	resetResults();
 	switch(statusCode) {
 		case 400:
 			error('Okay, so you may have found an edge case that messes up the request, or I dun goofed.');
@@ -155,6 +176,7 @@ function handleError(statusCode, name, region) {
 		default:
 			error('Alright, I have no idea what Riot sent me. Hold up.');
 	}
+	notify(summonerName, region, statusCode);
 }
 
 function getRecentGames(summonerName, summonerID, region) {
@@ -168,10 +190,10 @@ function getRecentGames(summonerName, summonerID, region) {
 	  if(data['response'] == 200) {
 		calculateWotdAvailability(data['games']);
 	  } else {
-		handleError(data['response'], summonerName, region);
+		handleError(summonerName, region, data['response']);
 	  }
     },
-	error: handleWrapperError
+	error: handlePHPError
   });
 }
 
@@ -192,14 +214,14 @@ function getSummonerID(summonerName, region) {
 	    var id = data[hashSummonerName].id;
 	    getRecentGames(summonerName, id, region);
 	  } else {
-		handleError(data['response'], summonerName, region);
+		handleError(summonerName, region, data['response']);
 	  }
     },
-	error: handleWrapperError
+	error: handlePHPError
   });
 }
 
-function reset() {
+function resetResults() {
     $('.yes, .no, .maybe, .error, .loading').hide();
 }
 
@@ -216,7 +238,7 @@ function error(message) {
 }
 
 function wotd() {
-  reset();
+  resetResults();
   var summonerName = $('#summonerName').val();
   var region = $('.selected').attr('value');
   window.history.pushState('', '', updateQueryStringParameter(window.location.href, 'u', summonerName)); 
