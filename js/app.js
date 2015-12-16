@@ -139,7 +139,7 @@ function notify(summonerName, region, statusCode) {
 		'summonerName' : summonerName,
 		'region' : region,
 		'status_code' : statusCode
-	}
+	},
     success: function(data) {
 		console.log("Successfully notified! CHECK YA MAIL!");
     },
