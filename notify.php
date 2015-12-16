@@ -2,6 +2,7 @@
 $summonerName = filter_var($_POST['summonerName'], FILTER_SANITIZE_EMAIL);
 $region = filter_var($_POST['region'], FILTER_SANITIZE_EMAIL);
 $status_code = filter_var($_POST['status_code'], FILTER_SANITIZE_EMAIL);
+print_r('name: '.$summonerName.', region: '.$region.', status code: '.$status_code);
 
 $url = 'https://api.mailgun.net/v3/rickzhang.cool/messages';
 $api_key = 'api:key-c5cf541f65f71986d2f0976183c6344b';
