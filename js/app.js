@@ -133,7 +133,7 @@ function notify(summonerName, region, statusCode) {
   $.ajax({
     type: "POST",
     url: "notify.php",
-    dataType: 'json',
+    dataType: 'text',
     data:
 	{
 		'summonerName' : summonerName,
