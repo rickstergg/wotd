@@ -1,46 +1,37 @@
 <?php
-# http://stackoverflow.com/questions/14229656/mailgun-sent-mail-with-attachment
-$mg_api = 'key-c5cf541f65f71986d2f0976183c6344b';
-$mg_version = 'api.mailgun.net/v3/';
-$mg_domain = "rickzhang.cool";
-$mg_from_email = "admin@rickzhang.cool";
-
-$mg_message_url = "https://".$mg_version.$mg_domain."/messages";
-
 $summonerName = filter_var($_POST['summonerName'], FILTER_SANITIZE_EMAIL);
 $region = filter_var($_POST['region'], FILTER_SANITIZE_EMAIL);
 $status_code = filter_var($_POST['status_code'], FILTER_SANITIZE_EMAIL);
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+$url = 'https://api.mailgun.net/v3/rickzhang.cool/messages';
+$api_key = 'api:key-c5cf541f65f71986d2f0976183c6344b';
 
-curl_setopt ($ch, CURLOPT_MAXREDIRS, 3);
-curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, false);
-curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt ($ch, CURLOPT_VERBOSE, 0);
-curl_setopt ($ch, CURLOPT_HEADER, 1);
-curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 10);
-curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
-curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);
+$params = array(
+    'api_user'  => 'api',
+    'api_key'   => $api_key,
+	'from'      => 'Rick <mailgun@rickzhang.cool>',
+    'to'        => 'rickzhang@live.ca',
+	'to'		=> 'admin@rickzhang.cool',
+    'subject'   => 'Error on WOTD',
+    'text'      => 'name: '.$summonerName.', region: '.$region.', status code: '.$status_code
+  );
 
-curl_setopt($ch, CURLOPT_USERPWD, 'api:' . $mg_api);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+// Generate curl request
+$session = curl_init($url);
+// Tell curl to use HTTP POST
+curl_setopt ($session, CURLOPT_POST, true);
+// Tell curl that this is the body of the POST
+curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
+// Tell curl not to return headers, but do return the response
+curl_setopt($session, CURLOPT_HEADER, false);
+// Tell PHP not to use SSLv3 (instead opting for TLS)
+curl_setopt($session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
 
-curl_setopt($ch, CURLOPT_POST, true);
-//curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
-curl_setopt($ch, CURLOPT_HEADER, false);
+// obtain response
+$response = curl_exec($session);
+curl_close($session);
 
-//curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-curl_setopt($ch, CURLOPT_URL, $mg_message_url);
-curl_setopt($ch, CURLOPT_POSTFIELDS,
-        array(  'from'      => 'Rick <' . 'mailgun@rickzhang.cool' . '>',
-                'to'        => 'rickzhang@live.ca',
-                'h:Reply-To'=>  ' <' . $mg_reply_to_email . '>',
-                'subject'   => 'Error on WOTD APP',
-                'text'      => '',
-            ));
-$result = curl_exec($ch);
-curl_close($ch);
-$res = json_decode($result,TRUE);
-print_r($res);
+// print everything out
+print_r($response);
 ?>
