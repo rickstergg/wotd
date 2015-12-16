@@ -9,23 +9,19 @@ $api_key = 'api:key-c5cf541f65f71986d2f0976183c6344b';
 $params = array(
 	'from'      => 'Rick <mailgun@rickzhang.cool>',
     'to'        => 'rickzhang@live.ca',
-	'to'		=> 'admin@rickzhang.cool',
     'subject'   => 'Error on WOTD',
     'text'      => 'name: '.$summonerName.', region: '.$region.', status code: '.$status_code
   );
 
 // Generate curl request
-$session = curl_init($url);
+$session = curl_init();
+// Set opts
+curl_setopt($session, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 curl_setopt($session, CURLOPT_USERPWD, 'api:'.$api_key);
-// Tell curl to use HTTP POST
-curl_setopt ($session, CURLOPT_POST, true);
-// Tell curl that this is the body of the POST
+curl_setopt($session, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($session, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, ‘POST’);
 curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
-// Tell curl not to return headers, but do return the response
-curl_setopt($session, CURLOPT_HEADER, false);
-// Tell PHP not to use SSLv3 (instead opting for TLS)
-curl_setopt($session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
 
 // obtain response
 $response = curl_exec($session);
