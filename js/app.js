@@ -159,7 +159,7 @@ function handleError(summonerName, region, statusCode) {
 			error('Something is messed up with the API Key, let me take a look at it soontime.');
 			break;
 		case 404:
-			error('Looks like this username does not exist!');
+			error('Looks like this username does not exist or have not played any games recently.');
 			return;
 		case 415:
 			error('I dunno what you did but I am curious..');
