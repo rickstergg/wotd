@@ -97,7 +97,7 @@ function calculateWotdAvailability(games) {
       if(meetsConditions(games[i])) {
         // If we find a game that meets the conditions, then wotd was gotten on this game (not factoring in IP boosts)
         // So, we need to return false, since it's not up.
-		$('.loading, .error').hide();
+		$('.loading').hide();
         $('.no').slideDown( 'slow', function() {
 			// Animation complete.
 		});
@@ -105,7 +105,7 @@ function calculateWotdAvailability(games) {
       }
     } else {
       // If we're outside of the 22 hour window, and we haven't found a game that looks like it is a wotd game, then return true.
-      $('.loading, .error').hide();
+      $('.loading').hide();
 	  $('.yes').slideDown( 'slow', function() {
 		// Animation complete.
 	  });
@@ -116,7 +116,7 @@ function calculateWotdAvailability(games) {
   // If we get here, we looped through all 10 games, and none of them:
   // Were within the time and met the conditions.
   // Possible if user plays more than 10 games within 22 hours.
-  $('.loading, .error').hide();
+  $('.loading').hide();
   $('.maybe').slideDown( "slow", function() {
     error('You have played more than 10 games in the last 22 hours! I can not see past that, so I can only say maybe! =(');
   });
@@ -229,11 +229,7 @@ function resetResults() {
 function submitOnEnter(e) {
 	if(e.keyCode === 13) {
 		// allow submission to go through only if another response is not currently going.
-		if($('.loading').css('visibility') === 'hidden') {
-			wotd();
-		} else {
-			error('Please wait for your current request to return before sending another one!');
-		}
+		wotd();
     }
 }
 
