@@ -97,7 +97,7 @@ function calculateWotdAvailability(games) {
       if(meetsConditions(games[i])) {
         // If we find a game that meets the conditions, then wotd was gotten on this game (not factoring in IP boosts)
         // So, we need to return false, since it's not up.
-		$('.loading').hide();
+		$('.loading, .error').hide();
         $('.no').slideDown( 'slow', function() {
 			// Animation complete.
 		});
@@ -105,7 +105,7 @@ function calculateWotdAvailability(games) {
       }
     } else {
       // If we're outside of the 22 hour window, and we haven't found a game that looks like it is a wotd game, then return true.
-      $('.loading').hide();
+      $('.loading, .error').hide();
 	  $('.yes').slideDown( 'slow', function() {
 		// Animation complete.
 	  });
@@ -116,7 +116,7 @@ function calculateWotdAvailability(games) {
   // If we get here, we looped through all 10 games, and none of them:
   // Were within the time and met the conditions.
   // Possible if user plays more than 10 games within 22 hours.
-  $('.loading').hide();
+  $('.loading, .error').hide();
   $('.maybe').slideDown( "slow", function() {
     error('You have played more than 10 games in the last 22 hours! I can not see past that, so I can only say maybe! =(');
   });
@@ -136,15 +136,15 @@ function notify(summonerName, region, statusCode) {
     dataType: 'text',
     data:
 	{
-		'summonerName' : summonerName,
+		'summoner_name' : summonerName,
 		'region' : region,
 		'status_code' : statusCode
 	},
     success: function(data) {
-		console.log("Successfully notified! CHECK YA MAIL!");
+		console.log("Successfully notified!");
     },
-	error: function(xhr, ajaxOptions, thrownError) {
-		console.log("Failed to notify.. uh oh.");
+	error: function(xhr, responseText, thrownError) {
+		console.log("Failed to notify admin.");
 	}
   });
 }
@@ -160,7 +160,7 @@ function handleError(summonerName, region, statusCode) {
 			break;
 		case 404:
 			error('Looks like this username does not exist!');
-			break;
+			return;
 		case 415:
 			error('I dunno what you did but I am curious..');
 			break;
@@ -173,6 +173,7 @@ function handleError(summonerName, region, statusCode) {
 			break;
 		case 503:
 			error('Looks like Riot is unable to handle the request for some reason. Try again later, maybe.');
+			break;
 		default:
 			error('Alright, I have no idea what Riot sent me. Hold up.');
 	}
@@ -226,8 +227,13 @@ function resetResults() {
 }
 
 function submitOnEnter(e) {
+	// allow submission to go through only if another response is not currently going.
 	if(e.keyCode === 13) {
-        wotd();
+		if($('.loading').css('visibility') !== 'hidden') {
+			wotd();
+		} else {
+			error('Please wait for your current request to return before sending another one!');
+		}
     }
 }
 
