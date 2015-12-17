@@ -229,10 +229,10 @@ function resetResults() {
 function submitOnEnter(e) {
 	if(e.keyCode === 13) {
 		// allow submission to go through only if another response is not currently going.
-		if($('.loading').css('visibility') === 'hidden') {
-			wotd();
-		} else {
+		if($('.loading').css('visibility') !== 'hidden') {
 			error('Please wait for your current request to return before sending another one!');
+		} else {
+			wotd();
 		}
     }
 }
