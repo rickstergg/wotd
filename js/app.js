@@ -161,7 +161,7 @@ function handleError(summonerName, region, statusCode) {
 			error('Something is messed up with the API Key, let me take a look at it soontime.');
 			break;
 		case 404:
-			error('Looks like this username does not exist or have not played any games recently.');
+			error('This username does not exist or does not have any recent games played.');
 			return;
 		case 415:
 			error('I dunno what you did but I am curious..');
@@ -172,13 +172,13 @@ function handleError(summonerName, region, statusCode) {
 			error('API limit reached! Disabling!');
 			break;
 		case 500:
-			error('Alright Rito did something that is messing up on their server side');
+			error('Alright, Rito did something that is messing up on their server side');
 			break;
 		case 503:
-			error('Looks like Riot is unable to handle the request for some reason. Try again later, maybe.');
+			error('Riot is unable to handle the request for some reason. Try again later, maybe.');
 			break;
 		default:
-			error('Alright, I have no idea what Riot sent me. Hold up.');
+			error('I have no idea what Riot sent me. Hold up.');
 	}
 	notify(summonerName, region, statusCode);
 }
@@ -246,7 +246,7 @@ function wotd() {
   resetResults();
   // Check availability of disable
   if(disable) {
-	  error("Looks like submissions are disabled because of API errors! Refresh the page after a while!");
+	  error("Submissions are disabled because of API errors! Refresh the page after a while!");
 	  return;
   }
   var summonerName = $('#summonerName').val();
