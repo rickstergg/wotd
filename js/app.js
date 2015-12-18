@@ -1,3 +1,5 @@
+var disable = false;
+
 // https://stackoverflow.com/questions/5999118/add-or-update-query-string-parameter/6021027#6021027
 function updateQueryStringParameter(uri, key, value) {
   var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
@@ -166,7 +168,8 @@ function handleError(summonerName, region, statusCode) {
 			break;
 		case 429:
 			// ANTI SPAM MECHANISMS and RATE LIMIT IMPLEMENTATIONS
-			error('Yo man stop spamming, please, you are ruining it for everyone!');
+			disable = true;
+			error('API limit reached! Disabling!');
 			break;
 		case 500:
 			error('Alright Rito did something that is messing up on their server side');
@@ -241,6 +244,11 @@ function error(message) {
 
 function wotd() {
   resetResults();
+  // Check availability of disable
+  if(disable) {
+	  error("Looks like submissions are disabled because of API errors! Refresh the page after a while!");
+	  return;
+  }
   var summonerName = $('#summonerName').val();
   var region = $('.selected').attr('value');
   window.history.pushState('', '', updateQueryStringParameter(window.location.href, 'u', summonerName)); 
