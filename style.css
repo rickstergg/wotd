@@ -1,14 +1,14 @@
 html, body {
+  background-color: #000;
   height: 100%;
   margin: 0;
   position: relative;
 }
 
 .container {
-  background-color: #000;
   height: 100%;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 10%;
+  margin-right: 10%;
   text-align: center;
 }
 
@@ -18,4 +18,62 @@ html, body {
 
 .rounded {
   border-radius: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.username-selection {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.region-selection {
+  padding-bottom: 30px;
+}
+
+.results {
+  padding-bottom: 30px;
+}
+
+h1 {
+  color: #FFFFFF;
+}
+
+.gray {
+  color: #D3D3D3;
+}
+
+#message {
+  color: #FF0000;
+}
+
+ul.region-selection {
+    list-style: none;
+    margin: 0;
+    padding: 0px 0px 20px 0px;
+    text-align: center;
+}
+
+li {
+	display: inline;
+	padding: 10px 16px;
+	color: white;
+}
+
+li a {
+	display: inline-block;
+	padding: 10px;
+}
+
+li:hover {
+	cursor: pointer;
+    border: 1px solid #006400;
+}
+
+.selected {
+	background-color: #006400;
 }
