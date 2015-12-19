@@ -12,14 +12,14 @@ Name: Rick Zhang
     <script src="js/app.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Maru's Project</title>
+    <title>Marupakuuu Reppin - WOTD</title>
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
     <div class="container">
       <div class="title">
-        <h1>WOTD APP</h1>
+        <h1>Maru's WotD App</h1>
       </div>
 
       <div class="username-selection">
@@ -58,8 +58,7 @@ Name: Rick Zhang
 
         <div class="error">
           <img src="img/error.png"/>
-          <div id="message">
-          </div>
+          <div id="message"></div>
         </div>
       </div>
 

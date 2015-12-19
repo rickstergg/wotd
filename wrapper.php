@@ -1,6 +1,7 @@
 <?php
 	// http://php.net/manual/en/reserved.variables.httpresponseheader.php#117203
-	function getResponseCodeFromHeaders( $headers )
+	// Original solution modified to return the response code only and a 200 by default if nothing exists.
+  function getResponseCodeFromHeaders( $headers )
 	{
 		$head = array();
 		foreach( $headers as $k=>$v )
@@ -15,14 +16,15 @@
 					return intval($out[1]);
 			}
 		}
-		return 200;
+    // If we couldn't find a code, something is wrong, return something scary-error level.
+		return 500;
 	}
 
 
   header('Content-Type: application/json');
   $url = $_POST['url'];
-  $json = file_get_contents($url.'api_key=325f0342-8487-463f-be24-96ed6fb11bf1');
-  $ary = json_decode($json, true);
-  $ary['response'] = getResponseCodeFromHeaders($http_response_header);
-  print_r(json_encode($ary));
+  $riot_api_response = file_get_contents($url.'api_key=325f0342-8487-463f-be24-96ed6fb11bf1');
+  $result = json_decode($riot_api_response, true);
+  $result['response'] = getResponseCodeFromHeaders($http_response_header);
+  print_r(json_encode($result));
 ?>
