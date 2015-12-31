@@ -13,7 +13,7 @@ Name: Rick Zhang
     <script src="js/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-    <title>Marupakuuu Reppin - WOTD</title>
+    <title>WotD</title>
   </head>
 
   <body>
