@@ -1,4 +1,5 @@
 var disable = false;
+var interval;
 
 function calculateTime(game) {
   var today = new Date();
@@ -12,7 +13,7 @@ function calculateTime(game) {
 
 function initializeCountdown(game) {
   var countdown = document.getElementById('timer');
-  var interval = setInterval(function() {
+  interval = setInterval(function() {
   var t = calculateTime(game);
     countdown.innerHTML =
       ('0' + t.hours).slice(-2) + ':' +
@@ -234,6 +235,7 @@ function getSummonerID(summonerName, region) {
 
 function resetResults() {
     $('.yes, .no, .maybe, .error, .loading, .timer').hide();
+    clearInterval(interval);
 }
 
 function submitOnEnter(e) {
