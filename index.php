@@ -46,7 +46,7 @@ Name: Rick Zhang
 
         <div class="no">
           <img src="img/no.png"/>
-          <div id="timer">
+          <div id="timer" class="timer">
           </div>
         </div>
 

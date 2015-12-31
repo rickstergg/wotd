@@ -49,7 +49,7 @@ function getURLParameter(name) {
 }
 
 $( document ).ready(function() {
-  $('.yes, .no, .maybe, .loading, .error, #timer').hide();
+  $('.yes, .no, .maybe, .loading, .error, .timer').hide();
 
   // If they have a region in mind
   var region = getURLParameter('r');
@@ -232,7 +232,7 @@ function getSummonerID(summonerName, region) {
 }
 
 function resetResults() {
-    $('.yes, .no, .maybe, .error, .loading, #timer').hide();
+    $('.yes, .no, .maybe, .error, .loading, .timer').hide();
 }
 
 function submitOnEnter(e) {
