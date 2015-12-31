@@ -9,8 +9,8 @@ $api_key = 'key-c5cf541f65f71986d2f0976183c6344b';
 $params = array(
 	'from'      => 'Rick <mailgun@rickzhang.cool>',
     'to'        => 'rickzhang@live.ca',
-    'subject'   => 'Error on WOTD: '.$status_code,
-    'text'      => 'name: '.$summoner_name.', region: '.$region
+    'subject'   => 'Error on WOTD: '.$status_code.' name: '.$summoner_name.', region: '.$region,
+    'text'      => ';3'
   );
 
 $session = curl_init();
