@@ -108,6 +108,7 @@ function calculateWotdAvailability(games) {
         $('.no').slideDown( 'slow', function() {
           // Animation complete.
         });
+        $('.timer').show();
         initializeCountdown(games[i]);
         return;
       }
