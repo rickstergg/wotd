@@ -1,5 +1,5 @@
 var disable = false;
-var interval;
+var interval = null;
 
 function calculateTime(game) {
   var today = new Date();
