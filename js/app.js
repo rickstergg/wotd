@@ -235,6 +235,7 @@ function getSummonerID(summonerName, region) {
 
 function resetResults() {
     $('.yes, .no, .maybe, .error, .loading, .timer').hide();
+    $('.timer').text('');
     clearInterval(interval);
 }
 
