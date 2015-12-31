@@ -12,8 +12,8 @@ Name: Rick Zhang
     <script src="js/app.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Marupakuuu Reppin - WOTD</title>
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <title>Marupakuuu Reppin - WOTD</title>
   </head>
 
   <body>
@@ -46,6 +46,8 @@ Name: Rick Zhang
 
         <div class="no">
           <img src="img/no.png"/>
+          <div id="timer">
+          </div>
         </div>
 
         <div class="maybe">
@@ -70,14 +72,4 @@ Name: Rick Zhang
       <p>Implementation of api-key protection (as well as limit usage) mechanisms</p>
     </div>
   </body>
-
-<!--
-<h2>WHEN I GET TO SEE MY BB</h2>
-<div class="countdown">
-  <input type="text" name="days" size="2"> days, <br>
-  <input type="text" name="hours" size="2"> hours, <br>
-  <input type="text" name="minutes" size="2"> minutes, <br>
-  <input type="text" name="seconds" size="2"> seconds, <br>
-</div>
--->
 </html>
