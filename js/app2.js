@@ -78,8 +78,8 @@ $( document ).ready(function() {
 });
 
 var app = function App() {
-  this.disabled = false;
-  this.interval = null;
+  disabled = false;
+  interval = null;
 
   this.resetResults = function() {
     $('.yes, .no, .maybe, .error, .loading, .timer').hide();
