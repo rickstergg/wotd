@@ -109,12 +109,12 @@ function App() {
     if (validName(summonerName)) {
       if (validRegion(region)) {
         $('.loading').show();
-        getSummonerID(summonerName, region);
+        this.getSummonerID(summonerName, region);
       } else {
-        error('You need a valid region! Choose any of: ' + 'na' + ' eune' + ' euw' + ' br' + ' lan' + ' las' + ' oce' + ' ru' + ' tu' + ' kr');
+        this.error('You need a valid region! Choose any of: ' + 'na' + ' eune' + ' euw' + ' br' + ' lan' + ' las' + ' oce' + ' ru' + ' tu' + ' kr');
       }
     } else {
-      error('The summoner name you entered is not valid! (character length, letters, numbers, and spaces only.)');
+      this.error('The summoner name you entered is not valid! (character length, letters, numbers, and spaces only.)');
     }
   };
 
