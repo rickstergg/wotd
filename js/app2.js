@@ -1,3 +1,10 @@
+function submitOnEnter(e) {
+  if(e.keyCode === 13) {
+    // allow submission to go through only if another response is not currently going.
+    app.wotd();
+  }
+}
+
 // http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513
 function getURLParameter(name) {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
