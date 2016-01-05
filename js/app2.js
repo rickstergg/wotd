@@ -188,12 +188,12 @@ function App() {
       data:   { 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.3/game/by-summoner/'+summonerID+'/recent?' },
       success: function(data) {
         if(data['response'] == 200) {
-          this.calculateWotdAvailability(data['games']);
+          app.calculateWotdAvailability(data['games']);
         } else {
-          this.handleError(summonerName, region, data['response']);
+          app.handleError(summonerName, region, data['response']);
         }
       },
-      error: this.handlePHPError
+      error: app.handlePHPError
     });
   };
 
@@ -212,12 +212,12 @@ function App() {
           // the data that comes back has to be accessed at the summoner name with no spaces
           var hashSummonerName = summonerName.toLowerCase().replace(/\s+/g, '');
           var id = data[hashSummonerName].id;
-          this.getRecentGames(summonerName, id, region);
+          app.getRecentGames(summonerName, id, region);
         } else {
-          this.handleError(summonerName, region, data['response']);
+          app.handleError(summonerName, region, data['response']);
         }
       },
-      error: this.handlePHPError
+      error: app.handlePHPError
     });
   };
 
