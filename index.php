@@ -9,7 +9,7 @@ Name: Rick Zhang
     <meta name="description" content="wotd">
     <meta name="keywords" content="lol,league of legends,wotd">
     <script src="js/jquery.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/app2.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
