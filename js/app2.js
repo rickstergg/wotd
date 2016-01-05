@@ -1,3 +1,5 @@
+var app = new App();
+
 function submitOnEnter(e) {
   if(e.keyCode === 13) {
     // allow submission to go through only if another response is not currently going.
@@ -77,9 +79,9 @@ $( document ).ready(function() {
   });
 });
 
-var app = function App() {
-  disabled = false;
-  interval = null;
+function App() {
+  this.disabled = false;
+  this.interval = null;
 
   this.resetResults = function() {
     $('.yes, .no, .maybe, .error, .loading, .timer').hide();
