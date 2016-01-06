@@ -17,7 +17,7 @@ function validName(name) {
 }
 
 function validRegion(region) {
-  return (['na', 'eune', 'euw', 'br', 'lan', 'las', 'oce', 'ru', 'tu', 'kr'].indexOf(region) > -1);
+  return (['na', 'eune', 'euw', 'br', 'lan', 'las', 'oce', 'ru', 'tr', 'kr'].indexOf(region) > -1);
 }
 
 function withinTime(game, now) {
@@ -118,9 +118,11 @@ function App() {
         this.running = true;
         this.getSummonerID(summonerName, region);
       } else {
+        this.running = false;
         this.error('You need a valid region! Choose any of: ' + 'na' + ' eune' + ' euw' + ' br' + ' lan' + ' las' + ' oce' + ' ru' + ' tu' + ' kr');
       }
     } else {
+      this.running = false;
       this.error('The summoner name you entered is not valid! (character length, letters, numbers, and spaces only.)');
     }
   };
