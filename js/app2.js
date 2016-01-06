@@ -82,6 +82,7 @@ $( document ).ready(function() {
 function App() {
   this.disabled = false;
   this.interval = null;
+  this.running = false;
 
   this.resetResults = function() {
     $('.yes, .no, .maybe, .error, .loading, .timer').hide();
@@ -96,7 +97,12 @@ function App() {
   };
 
   this.wotd = function() {
+    if(this.running) {
+      return;
+    }
+
     this.resetResults();
+
     // Check availability of disable
     if(this.disabled) {
       this.error("Submissions are disabled because of API errors! Refresh the page after a while!");
@@ -109,6 +115,7 @@ function App() {
     if (validName(summonerName)) {
       if (validRegion(region)) {
         $('.loading').show();
+        this.running = true;
         this.getSummonerID(summonerName, region);
       } else {
         this.error('You need a valid region! Choose any of: ' + 'na' + ' eune' + ' euw' + ' br' + ' lan' + ' las' + ' oce' + ' ru' + ' tu' + ' kr');
@@ -157,6 +164,7 @@ function App() {
           });
           $('.timer').show();
           this.initializeCountdown(games[i]);
+          this.running = false;
           return;
         }
       } else {
@@ -165,6 +173,7 @@ function App() {
         $('.yes').slideDown( 'slow', function() {
           // Animation complete.
         });
+        this.running = false;
         return;
       }
     }
@@ -176,6 +185,7 @@ function App() {
     $('.maybe').slideDown( "slow", function() {
       this.error('You have played more than 10 games in the last 22 hours! I can not see past that, so I can only say maybe! =(');
     });
+    this.running = false;
     return;
   };
 
@@ -185,11 +195,12 @@ function App() {
       type: "POST",
       url: "wrapper.php",
       dataType: 'json',
-      data:   { 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.3/game/by-summoner/'+summonerID+'/recent?' },
+      data: { 'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.3/game/by-summoner/'+summonerID+'/recent?' },
       success: function(data) {
         if(data['response'] == 200) {
           app.calculateWotdAvailability(data['games']);
         } else {
+          this.running = false;
           app.handleError(summonerName, region, data['response']);
         }
       },
@@ -204,9 +215,9 @@ function App() {
       url:"wrapper.php",
       dataType:'json',
       data:
-        {
-          'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+encodeURIComponent(summonerName)+'?'
-        },
+      {
+        'url': 'https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+encodeURIComponent(summonerName)+'?'
+      },
       success: function(data){
         if(data['response'] == 200) {
           // the data that comes back has to be accessed at the summoner name with no spaces
@@ -214,6 +225,7 @@ function App() {
           var id = data[hashSummonerName].id;
           app.getRecentGames(summonerName, id, region);
         } else {
+          this.running = false;
           app.handleError(summonerName, region, data['response']);
         }
       },
@@ -223,6 +235,7 @@ function App() {
 
   this.handlePHPError = function() {
     this.resetResults();
+    this.running = false;
     this.error("Rick must've done goofed somewhere in the PHP, hold on! ;3");
   };
 
