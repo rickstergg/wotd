@@ -142,29 +142,29 @@ function App() {
   }
 
   this.calculateWotdAvailability = function(games) {
-	/* 
-		IP BOOST CHECK
-		How do we check? Well, if they win and are gaining a ton of IP,
-		or if they lose and still gain a lot of IP, then the prolly have a boost.
-		300 and 150 serve as pretty useful bounds, but I will test this myself.
-		Reason being, according to http://leagueoflegends.wikia.com/wiki/Influence_Points
-		and http://leagueoflegends.wikia.com/wiki/Boost,
-		there are lower and upper bounds, and factoring in boosts, these are reasonable
-		estimates for what we should use to calculate ip boost usage.
-	  */
-	  var i, ipBoostedGames = 0;
-	  for(i = 0; i < games.length; i++) {
-		var win = games[i]['stats']['win'];
-		var ip = games[i]['ipEarned'];
-		if((win && ip >= 300) || (!win && ip >= 150)) {
-			ipBoostedGames++;
-		}
-	  }
+    /*
+      IP BOOST CHECK
+      How do we check? Well, if they win and are gaining a ton of IP,
+      or if they lose and still gain a lot of IP, then the prolly have a boost.
+      300 and 150 serve as pretty useful bounds, but I will test this myself.
+      Reason being, according to http://leagueoflegends.wikia.com/wiki/Influence_Points
+      and http://leagueoflegends.wikia.com/wiki/Boost,
+      there are lower and upper bounds, and factoring in boosts, these are reasonable
+      estimates for what we should use to calculate ip boost usage.
+    */
+    var i, ipBoostedGames = 0;
+    for(i = 0; i < games.length; i++) {
+      var win = games[i]['stats']['win'];
+      var ip = games[i]['ipEarned'];
+      if((win && ip >= 300) || (!win && ip >= 150)) {
+        ipBoostedGames++;
+      }
+    }
 
-	  if(ipBoostedGames) {
-		this.error("Results might be inaccurate, as it seems this summoner has an IP boost at the time of these games.");
-	  }
-	/* Pseudocode:
+    if(ipBoostedGames) {
+      this.error("Results might be inaccurate, as it seems this summoner has an IP boost at the time of these games.");
+    }
+    /* Pseudocode:
        Constants:
         - 10 game list.
         - Rules for win of the day.
