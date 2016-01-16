@@ -16,14 +16,14 @@
 					return intval($out[1]);
 			}
 		}
-    // If we couldn't find a code, something is wrong, return something scary-error level.
+		// If we couldn't find a code, something is wrong, return something scary-error level.
 		return 500;
 	}
 
 
   header('Content-Type: application/json');
   $url = $_POST['url'];
-  $riot_api_response = file_get_contents($url.'api_key=325f0342-8487-463f-be24-96ed6fb11bf1');
+  $riot_api_response = file_get_contents($url.'api_key=0481fc25-e803-4cbb-9ba5-02ca7c391b96');
   $result = json_decode($riot_api_response, true);
   $result['response'] = getResponseCodeFromHeaders($http_response_header);
   print_r(json_encode($result));
