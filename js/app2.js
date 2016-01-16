@@ -142,8 +142,30 @@ function App() {
   }
 
   this.calculateWotdAvailability = function(games) {
-    /* Pseudocode:
-      Constants:
+	/* 
+		IP BOOST CHECK
+		How do we check? Well, if they win and are gaining a ton of IP,
+		or if they lose and still gain a lot of IP, then the prolly have a boost.
+		300 and 150 serve as pretty useful bounds, but I will test this myself.
+		Reason being, according to http://leagueoflegends.wikia.com/wiki/Influence_Points
+		and http://leagueoflegends.wikia.com/wiki/Boost,
+		there are lower and upper bounds, and factoring in boosts, these are reasonable
+		estimates for what we should use to calculate ip boost usage.
+	  */
+	  var i, ipBoostedGames = 0;
+	  for(i = 0; i < games.length; i++) {
+		var win = game['stats']['win'];
+		var ip = games[i]['ipEarned'];
+		if((win && ip >= 300) || (!win && ip >= 150)) {
+			ipBoostedGames++;
+		}
+	  }
+
+	  if(ipBoostedGames) {
+		this.error("Results might be inaccurate, as it seems this summoner has an IP boost at the time of these games.");
+	  }
+	/* Pseudocode:
+       Constants:
         - 10 game list.
         - Rules for win of the day.
         - Win, 150 IP, > 7 minutes of a game, anything but custom game, every 22 hours.
@@ -154,7 +176,7 @@ function App() {
     */
     var now = new Date().getTime();
 
-    for(var i = 0; i < games.length; i++) {
+    for(i = 0; i < games.length; i++) {
       // While game time is less than 22 hours from now, check if it satisfies the wotd conditions.
       if(withinTime(games[i], now)) {
         if(meetsConditions(games[i])) {
