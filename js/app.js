@@ -99,7 +99,7 @@ function calculateWotdAvailability(games) {
   */
   var ipBoostedGames = 0;
   for(var i = 0; i < games.length; i++) {
-    var win = game['stats']['win'];
+    var win = games[i]['stats']['win'];
 	var ip = games[i]['ipEarned'];
 	if((win && ip >= 300) || (!win && ip >= 150)) {
 		ipBoostedGames++;
