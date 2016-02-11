@@ -107,7 +107,7 @@ function calculateWotdAvailability(games) {
   }
 
   if(ipBoostedGames) {
-    error("Results might be inaccurate, as it seems this summoner has an IP boost at the time of these games.");
+    error("Results might be inaccurate, as it seems this summoner has an IP boost / Riot party rewards at the time of these games.");
   }
   /*
     Pseudocode:
