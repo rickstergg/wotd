@@ -137,6 +137,7 @@ function App() {
         ('0' + t.seconds).slice(-2);
       if(t.total <= 0) {
         clearInterval(this.interval);
+        $('.yes').slideDown( 'slow', function() {});
       }
     }, 1000);
   }

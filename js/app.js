@@ -21,6 +21,7 @@ function initializeCountdown(game) {
       ('0' + t.seconds).slice(-2);
     if(t.total <= 0) {
       clearInterval(interval);
+      $('.yes').slideDown( 'slow', function() {});
     }
   }, 1000);
 }
