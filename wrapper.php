@@ -23,7 +23,7 @@
 
   header('Content-Type: application/json');
   $url = $_POST['url'];
-  $riot_api_response = file_get_contents($url.'api_key=0481fc25-e803-4cbb-9ba5-02ca7c391b96');
+  $riot_api_response = file_get_contents($url.'api_key=RGAPI-1cfc39dd-2438-10d3-fc88-20289729955c');
   $result = json_decode($riot_api_response, true);
   $result['response'] = getResponseCodeFromHeaders($http_response_header);
   print_r(json_encode($result));
